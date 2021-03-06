@@ -1,0 +1,14 @@
+version: '3'
+services:
+  webserver:
+    image: "nginx"
+    volumes:
+      - shared_volume:/usr/share/nginx/html
+    ports:
+      - "8080:80"
+  cowsay:
+    image: "cowsay:1.0"
+    volumes:
+      - shared_volume:/root/shared_volume
+volumes:
+  shared_volume:
