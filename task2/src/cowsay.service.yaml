@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cowsay-service
+  namespace: cowsay
+  labels:
+    app: cowsay
+spec:
+  type: LoadBalancer
+  selector:
+    app: cowsay
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
