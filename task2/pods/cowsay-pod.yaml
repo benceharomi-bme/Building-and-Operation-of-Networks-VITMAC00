@@ -14,6 +14,8 @@ spec:
 
   - name: webserver
     image: nginx
+    ports:
+    - containerPort: 80
     volumeMounts:
     - name: shared-volume
       mountPath: /usr/share/nginx/html
