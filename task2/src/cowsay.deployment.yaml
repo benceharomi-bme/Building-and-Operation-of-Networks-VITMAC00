@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cowsay-deployment
+  namespace: cowsay
+  labels:
+    app: cowsay
+spec:
+  selector:
+    matchLabels:
+      app: cowsay
+  template:
+    metadata:
+      labels:
+        app: cowsay
+    spec:
+      volumes:
+      - name: shared-volume
+        emptyDir: {}
+  
+      containers:
+      - name: webserver
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /usr/share/nginx/html
+      - name: cowsay
+        image: benceharomi/cowsay
+        volumeMounts:
+        - name: shared-volume
+          mountPath: /root/shared_volume
